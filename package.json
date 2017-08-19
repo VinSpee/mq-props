@@ -5,6 +5,10 @@
   "description": "returns css-in-js",
   "license": "ISC",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "dist.js"
+  ],
   "babel": {
     "presets": [
       "env",

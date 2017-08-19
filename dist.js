@@ -1,28 +1,56 @@
-"use strict";
+'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends4 = require('babel-runtime/helpers/extends');
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _extends5 = _interopRequireDefault(_extends4);
+
+var _entries = require('babel-runtime/core-js/object/entries');
+
+var _entries2 = _interopRequireDefault(_entries);
+
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = function (sizes) {
   return function (property) {
     return function (val) {
-      // Short circuit - if there is no size scale, exit.
-      if (!sizes) {
-        return val;
-      }
-      // Short circuit - if the prop isn't an array, exit.
-      if (!Array.isArray(val)) {
-        return val;
+      if (!property) {
+        throw new Error('You must provide a property');
       }
 
-      var entries = Object.entries(sizes);
+      if (!val) {
+        throw new Error('You must provide a value');
+      }
+
+      if (!sizes) {
+        return (0, _defineProperty3.default)({}, property, val);
+      }
+
+      if (!Array.isArray(val)) {
+        return (0, _defineProperty3.default)({}, property, val);
+      }
+
+      if ((0, _keys2.default)(sizes).length + 1 < val.length) {
+        throw new Error('You provided more values than sizes');
+      }
+
+      var entries = (0, _entries2.default)(sizes);
 
       return val.reduce(function (acc, size, i) {
-        if (i === 0) {
-          return _extends({}, acc, _defineProperty({}, property, val[i]));
+        if (typeof val[i] === 'undefined' || val[i] === null || val[i] === false) {
+          return acc;
         }
-        return _extends({}, acc, _defineProperty({}, "@media (" + entries[i - 1][1] + ")", _defineProperty({}, property, val[i])));
+        if (i === 0) {
+          return (0, _extends5.default)({}, acc, (0, _defineProperty3.default)({}, property, val[i]));
+        }
+        return (0, _extends5.default)({}, acc, (0, _defineProperty3.default)({}, '@media (' + entries[i - 1][1] + ')', (0, _defineProperty3.default)({}, property, val[i])));
       }, {});
     };
   };
