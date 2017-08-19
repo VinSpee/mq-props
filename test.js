@@ -1,11 +1,7 @@
 const test = require('ava');
 const mq = require('./index');
 
-const SIZES = {
-  sm: 'min-width: 320px',
-  md: 'min-width: 480px',
-  lg: 'min-width: 768px'
-};
+const SIZES = ['min-width: 320px', 'min-width: 480px', 'min-width: 768px'];
 
 const sized = mq(SIZES);
 
