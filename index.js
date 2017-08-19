@@ -26,6 +26,13 @@ module.exports = sizes => property => val => {
   const entries = Object.entries(sizes);
 
   return val.reduce((acc, size, i) => {
+    if (
+      typeof val[i] === 'undefined' ||
+      val[i] === null ||
+      val[i] === false
+    ) {
+      return acc;
+    }
     if (i === 0) {
       return {
         ...acc,

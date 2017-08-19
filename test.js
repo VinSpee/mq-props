@@ -78,3 +78,24 @@ test('throws when given more values than sizes', t => {
 
   t.is(actual.message, 'You provided more values than sizes');
 });
+
+test('ignores missing values in the array', t => {
+  const expected = {
+    propertyToSet: 'foo',
+    '@media (min-width: 320px)': {
+      propertyToSet: 'bar'
+    },
+    '@media (min-width: 768px)': {
+      propertyToSet: 'qux'
+    }
+  };
+
+  const actual = sized('propertyToSet')([
+    'foo',
+    'bar',
+    null,
+    'qux'
+  ]);
+
+  t.deepEqual(expected, actual);
+});
