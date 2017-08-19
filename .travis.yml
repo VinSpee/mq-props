@@ -1,3 +1,10 @@
 language: node_js
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
+deploy:
+  on:
+    tags: true
+  skip_cleanup: true
+  provider: npm
+  email: "v@vinspee.me"
+  api_key: "PEMcd4SAK/32HthfvvV9BGCXqMN/RVerNUI28tfiW0BhlKIDw1eWG8Zr1obCo06upUhb8oSEAi3eEs7wBpB4SCzeFNFdNUu+Wi5I7tJKLQ6+TnY9M5uu3vZFNWbKUvrFdCWlgtMVpakpejLDWxGIC33bpEBRiiIxOegG9hCZMnQj+j7YTTZwIlj180DaLx7UxSlgIFifaXJ+sa9ZlU0XkRLZOOvzKz/syvkemgJp7zvk0+WKGQMmiPokXIbfgBNP6m77iWVXyzDDoaSCgMUxv3M2c5NIO1xs0sLAt3hxmG3vzMN9OPdf2zcguCjmfiqOLkr2iRvYX6b1u+nM5fva8LVODMIHWaRofSk+8DZFjOicgF9zShUZYzPPOP8E1K/jOO3AdLiFeUpTSCR78rHLLwsDZFFauUEEm9gtiMR156L3RrpePbYI5eC8eX6v9FgFL0nsRBF4X5z9kaR13tuZh6aJmZ9AJ3qqnUtqUNrS0TMSVzvw2ydkxaAQalggPKb4g7XwslY94dl16+1DEwCUQEG4DzFCcUr702surlpzz12cwMa4F56xVntha4ZW7A4UBH8nlcB8IVAawUNA60y/lq2/GuXPnbbDwC/TlqnjHboYfc9JP930EM4KpIVvnp6Qg/8PAzAjR/oUQ3bCN8fhMlhyyYIrX8NUMXtSn32VdKM="
