@@ -1,0 +1,57 @@
+{
+  "name": "mq-props",
+  "author": "Vince Speelman <v@vinspee.me>",
+  "version": "1.0.0",
+  "description": "returns css-in-js",
+  "license": "ISC",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "env",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ],
+    "ignore": "test.js",
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "scripts": {
+    "prebuild": "yarn test",
+    "build": "BABEL_ENV=[rpduction babel index.js -o dist.js",
+    "lint": "xo",
+    "pretest": "yarn lint",
+    "report": "nyc report --reporter=html",
+    "test": "nyc ava",
+    "test:watch": "ava -v --watch",
+    "prepublish": "in-publish && yarn build || not-in-publish",
+    "prepush": "yarn test"
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
+  },
+  "xo": {
+    "space": true,
+    "fix": true,
+    "ignore": "dist.js"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "nyc": "^11.1.0",
+    "xo": "^0.18.2"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "husky": "^0.14.3",
+    "in-publish": "^2.0.0"
+  }
+}
