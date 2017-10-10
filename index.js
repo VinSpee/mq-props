@@ -34,16 +34,20 @@ module.exports = sizes => property => val => {
       return acc;
     }
     if (i === 0) {
-      return {
-        ...acc,
-        [property]: val[i]
-      };
+      return Object.assign({},
+        acc,
+        {
+          [property]: val[i]
+        }
+      );
     }
-    return {
-      ...acc,
-      [`@media (${entries[i - 1][1]})`]: {
-        [property]: val[i]
-      }
-    };
+    return Object.assign({},
+      acc,
+      {
+        [`@media (${entries[i - 1][1]})`]: {
+          [property]: val[i]
+        }
+      },
+    );
   }, {});
 };

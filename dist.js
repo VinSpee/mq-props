@@ -1,8 +1,8 @@
 'use strict';
 
-var _extends4 = require('babel-runtime/helpers/extends');
+var _assign = require('babel-runtime/core-js/object/assign');
 
-var _extends5 = _interopRequireDefault(_extends4);
+var _assign2 = _interopRequireDefault(_assign);
 
 var _entries = require('babel-runtime/core-js/object/entries');
 
@@ -48,9 +48,9 @@ module.exports = function (sizes) {
           return acc;
         }
         if (i === 0) {
-          return (0, _extends5.default)({}, acc, (0, _defineProperty3.default)({}, property, val[i]));
+          return (0, _assign2.default)({}, acc, (0, _defineProperty3.default)({}, property, val[i]));
         }
-        return (0, _extends5.default)({}, acc, (0, _defineProperty3.default)({}, '@media (' + entries[i - 1][1] + ')', (0, _defineProperty3.default)({}, property, val[i])));
+        return (0, _assign2.default)({}, acc, (0, _defineProperty3.default)({}, '@media (' + entries[i - 1][1] + ')', (0, _defineProperty3.default)({}, property, val[i])));
       }, {});
     };
   };
