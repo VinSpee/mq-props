@@ -1,7 +1,7 @@
 {
   "name": "mq-props",
   "author": "Vince Speelman <v@vinspee.me>",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "returns css-in-js",
   "license": "ISC",
   "main": "index.js",
