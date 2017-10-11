@@ -3,17 +3,21 @@ module.exports = sizes => property => val => {
     throw new Error('You must provide a property');
   }
 
-  if (!val) {
-    throw new Error('You must provide a value');
-  }
-
   if (!sizes) {
+    if (!val) {
+      return null;
+    }
+
     return {
       [property]: val
     };
   }
 
   if (!Array.isArray(val)) {
+    if (!val) {
+      return null;
+    }
+
     return {
       [property]: val
     };

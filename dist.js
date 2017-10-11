@@ -37,8 +37,8 @@ module.exports = function (sizes) {
         return (0, _defineProperty3.default)({}, property, val);
       }
 
-      if ((0, _keys2.default)(sizes).length + 1 < val.length) {
-        throw new Error('You provided more values than sizes');
+      if ((0, _keys2.default)(sizes).length < val.length - 1) {
+        throw new Error('You provided more values than sizes:\n\uD83E\uDD21 ' + (0, _keys2.default)(sizes).length + ' sizes.\n\uD83C\uDF0E ' + val.length + ' values. (' + (val.length - 1) + ' including the default value)\n');
       }
 
       var entries = (0, _entries2.default)(sizes);

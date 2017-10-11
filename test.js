@@ -33,12 +33,10 @@ test('throws if not given a property', t => {
   t.is(actual.message, 'You must provide a property');
 });
 
-test('throws if not given a value', t => {
-  const actual = t.throws(() => {
-    sized('prop')();
-  }, Error);
+test('returns nothing for falsy values', t => {
+  const actual = sized('prop')(null);
 
-  t.is(actual.message, 'You must provide a value');
+  t.is(actual, null);
 });
 
 test('returns an object of media queries when given an array of values', t => {
