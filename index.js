@@ -19,8 +19,11 @@ module.exports = sizes => property => val => {
     };
   }
 
-  if ((Object.keys(sizes).length + 1) < (val.length)) {
-    throw new Error('You provided more values than sizes');
+  if ((Object.keys(sizes).length) < (val.length - 1)) {
+    throw new Error(`You provided more values than sizes:
+🤡 ${Object.keys(sizes).length} sizes.
+🌎 ${val.length} values. (${val.length - 1} including the default value)
+`);
   }
 
   const entries = Object.entries(sizes);

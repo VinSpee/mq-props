@@ -76,7 +76,10 @@ test('throws when given more values than sizes', t => {
     ]);
   }, Error);
 
-  t.is(actual.message, 'You provided more values than sizes');
+  t.is(actual.message, `You provided more values than sizes:
+🤡 3 sizes.
+🌎 5 values. (4 including the default value)
+`);
 });
 
 test('ignores missing values in the array', t => {
