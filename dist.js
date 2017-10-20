@@ -21,19 +21,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 module.exports = function (sizes) {
   return function (property) {
     return function (val) {
-      if (!property) {
-        throw new Error('You must provide a property');
-      }
-
-      if (!val) {
-        throw new Error('You must provide a value');
-      }
-
       if (!sizes) {
+        if (!val) {
+          return null;
+        }
+
+        if (!property) {
+          return val;
+        }
+
         return (0, _defineProperty3.default)({}, property, val);
       }
 
       if (!Array.isArray(val)) {
+        if (!val) {
+          return null;
+        }
+
+        if (!property) {
+          return val;
+        }
+
         return (0, _defineProperty3.default)({}, property, val);
       }
 
@@ -48,7 +56,13 @@ module.exports = function (sizes) {
           return acc;
         }
         if (i === 0) {
+          if (!property) {
+            return (0, _assign2.default)({}, acc, val[i]);
+          }
           return (0, _assign2.default)({}, acc, (0, _defineProperty3.default)({}, property, val[i]));
+        }
+        if (!property) {
+          return (0, _assign2.default)({}, acc, (0, _defineProperty3.default)({}, '@media (' + entries[i - 1][1] + ')', val[i]));
         }
         return (0, _assign2.default)({}, acc, (0, _defineProperty3.default)({}, '@media (' + entries[i - 1][1] + ')', (0, _defineProperty3.default)({}, property, val[i])));
       }, {});

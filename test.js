@@ -25,18 +25,28 @@ test('when given one value, returns the value it was passed', t => {
   t.deepEqual(expected, actual);
 });
 
-test('throws if not given a property', t => {
-  const actual = t.throws(() => {
-    sized()('foo');
-  }, Error);
+test('returns an object if not given a property', t => {
+  const actual = sized()([
+    {foo: 'foo', bar: 'bar'},
+    {bar: 'foo', baz: 'buzz'}
+  ]);
 
-  t.is(actual.message, 'You must provide a property');
+  const expected = {
+    '@media (min-width: 320px)': {
+      baz: 'buzz',
+      bar: 'foo'
+    },
+    bar: 'bar',
+    foo: 'foo'
+  };
+
+  t.deepEqual(actual, expected);
 });
 
 test('returns nothing for falsy values', t => {
   const actual = sized('prop')(null);
 
-  t.is(actual, null);
+  t.deepEqual(actual, null);
 });
 
 test('returns an object of media queries when given an array of values', t => {

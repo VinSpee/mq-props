@@ -1,11 +1,11 @@
 module.exports = sizes => property => val => {
-  if (!property) {
-    throw new Error('You must provide a property');
-  }
-
   if (!sizes) {
     if (!val) {
       return null;
+    }
+
+    if (!property) {
+      return val;
     }
 
     return {
@@ -16,6 +16,10 @@ module.exports = sizes => property => val => {
   if (!Array.isArray(val)) {
     if (!val) {
       return null;
+    }
+
+    if (!property) {
+      return val;
     }
 
     return {
@@ -41,11 +45,25 @@ module.exports = sizes => property => val => {
       return acc;
     }
     if (i === 0) {
+      if (!property) {
+        return Object.assign({},
+          acc,
+          val[i],
+        );
+      }
       return Object.assign({},
         acc,
         {
           [property]: val[i]
         }
+      );
+    }
+    if (!property) {
+      return Object.assign({},
+        acc,
+        {
+          [`@media (${entries[i - 1][1]})`]: val[i]
+        },
       );
     }
     return Object.assign({},
