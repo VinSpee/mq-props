@@ -43,10 +43,14 @@ test('returns an object if not given a property', t => {
   t.deepEqual(actual, expected);
 });
 
-test('returns nothing for falsy values', t => {
-  const actual = sized('prop')(null);
+test('returns nothing for any non-numeric falsy value', t => {
+  const nu = sized('prop')(null);
 
-  t.deepEqual(actual, null);
+  t.deepEqual(nu, null);
+
+  const empty = sized('prop')('');
+
+  t.deepEqual(empty, null);
 });
 
 test('returns an object of media queries when given an array of values', t => {

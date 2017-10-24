@@ -40,6 +40,7 @@ module.exports = sizes => property => val => {
     if (
       typeof val[i] === 'undefined' ||
       val[i] === null ||
+      val[i] === '' ||
       val[i] === false
     ) {
       return acc;
