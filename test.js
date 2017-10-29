@@ -5,6 +5,14 @@ const SIZES = ['min-width: 320px', 'min-width: 480px', 'min-width: 768px'];
 
 const sized = mq(SIZES);
 
+test('when not given sizes, or val, return null', t => {
+  const expected = null;
+
+  const actual = mq()('foo')(null);
+
+  t.deepEqual(expected, actual);
+});
+
 test('when not given sizes, returns the property it was passed', t => {
   const expected = {
     propertyToSet: 'foo'
@@ -23,6 +31,14 @@ test('when given one value, returns the value it was passed', t => {
   const actual = sized('propertyToSet')('foo');
 
   t.deepEqual(expected, actual);
+});
+
+test('returns val if not given sizes or a prop', t => {
+  const actual = mq()()('foo');
+
+  const expected = 'foo';
+
+  t.deepEqual(actual, expected);
 });
 
 test('returns an object if not given a property', t => {

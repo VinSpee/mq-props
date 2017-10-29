@@ -52,7 +52,7 @@ module.exports = function (sizes) {
       var entries = (0, _entries2.default)(sizes);
 
       return val.reduce(function (acc, size, i) {
-        if (typeof val[i] === 'undefined' || val[i] === null || val[i] === false) {
+        if (typeof val[i] === 'undefined' || val[i] === null || val[i] === '' || val[i] === false) {
           return acc;
         }
         if (i === 0) {
